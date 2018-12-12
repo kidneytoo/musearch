@@ -5,14 +5,14 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import promise from 'redux-promise';
 import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers';
+import reduxThunk from 'redux-thunk';
 
-const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
 const AppWithRouter = () => (
-  <Provider store={createStoreWithMiddleware(reducers)}>
+  <Provider store={store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>

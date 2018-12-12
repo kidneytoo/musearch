@@ -1,6 +1,9 @@
 const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
 const keys = require('../config/keys');
+const mongoose = require('mongoose');
+
+const User = mongoose.model('Users');
 
 passport.serializeUser((user, done) => {
   done(null, user);
@@ -15,9 +18,15 @@ passport.use(
       clientSecret: keys.facebookClientSecret,
       callbackURL: '/auth/facebook/callback'
     },
-    function(accessToken, refreshToken, profile, done) {
-      //ส่วนนี้จะเอาข้อมูลที่ได้จาก facebook ไปทำอะไรต่อก็ได้
-      done(null, profile);
+    async (accessToken, refreshToken, profile, done) => {
+      const existingUser = await User.findOne({ userId: profile.id });
+
+      if (existingUser) {
+        done(null, existingUser);
+      } else {
+        const user = await new User({ userId: profile.id }).save();
+        done(null, user);
+      }
     }
   )
 );
