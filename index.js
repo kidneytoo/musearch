@@ -1,15 +1,15 @@
 const passport = require('passport');
 const express = require('express');
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const CookieSession = require('cookie-session');
 const keys = require('./config/keys');
 
-// require('./models/User');
+require('./models/User');
 require('./services/passport');
 
-// mongoose.connect(keys.mongoURI);
+mongoose.connect(keys.mongoURI);
 const app = express();
 
 app.use(
