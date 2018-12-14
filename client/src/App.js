@@ -13,17 +13,19 @@ class App extends Component {
 
   render() {
     return (
-      <div
-        style={{
-          backgroundImage: `url(${bg})`,
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center center',
-          height: '100vh'
-        }}
-      />
-      <div className="App">
-        <Header />
+      <div>
+        <div className="App">
+          <Header />
+        </div>
+        <div
+          style={{
+            backgroundImage: `url(${bg})`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center center',
+            height: '100vh'
+          }}
+        />
       </div>
     );
   }

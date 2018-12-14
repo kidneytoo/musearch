@@ -4,14 +4,12 @@
   "private": true,
   "dependencies": {
     "antd": "^3.11.2",
-<<<<<<< HEAD
-=======
     "axios": "^0.18.0",
->>>>>>> 9bb9859b80de992b742606a8ee60b11bac541f81
     "firebase": "^5.7.0",
     "node-sass": "^4.11.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
+    "react-facebook-login": "^4.1.1",
     "react-redux": "^6.0.0",
     "react-redux-firebase": "^2.2.4",
     "react-router-dom": "^4.3.1",

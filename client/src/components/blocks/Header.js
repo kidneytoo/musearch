@@ -8,16 +8,41 @@ class Header extends Component {
   state = {
     loginModalVisible: false
   };
+  showModal = () => {
+    this.setState({
+      loginModalVisible: true
+    });
+  };
+
+  handleOk = e => {
+    console.log(e);
+    this.setState({
+      loginModalVisible: false
+    });
+  };
+
+  handleCancel = e => {
+    console.log(e);
+    this.setState({
+      loginModalVisible: false
+    });
+  };
 
   render() {
     return (
       <div>
-        <LoginModal />
+        <LoginModal
+          loginModalVisible={this.state.loginModalVisible}
+          handleOk={this.handleOk.bind(this)}
+          handleCancel={this.handleCancel.bind(this)}
+        />
         <nav className="header-nav">
           <div className="header-container">
             <a className="logo">Musearch</a>
             <div className="right">
-              <Button>Login</Button>
+              <Button type="primary" onClick={this.showModal}>
+                SIGN IN
+              </Button>
             </div>
           </div>
         </nav>
