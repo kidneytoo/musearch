@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './styles/App.scss';
+import bg from './dist/bg/1.jpg';
 import 'antd/dist/antd.css';
 import Header from './components/blocks/Header';
 import { connect } from 'react-redux';
@@ -12,8 +13,19 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Header />
+      <div>
+        <div className="App">
+          <Header />
+        </div>
+        <div
+          style={{
+            backgroundImage: `url(${bg})`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center center',
+            height: '100vh'
+          }}
+        />
       </div>
     );
   }
