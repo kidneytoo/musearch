@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import FacebookLogin from 'react-facebook-login';
 import ReactDOM from 'react-dom';
 import { Form, Icon, Input, Button, Checkbox, Modal, Divider } from 'antd';
+import { Link } from 'react-router-dom';
+
 const FormItem = Form.Item;
 function hasErrors(fieldsError) {
   return Object.keys(fieldsError).some(field => fieldsError[field]);
@@ -54,9 +56,9 @@ class LoginModal extends Component {
         onOk={this.props.handleOk}
         onCancel={this.props.handleCancel}
         footer={[
-          <Button key="back" onClick={this.props.handleCancel}>
-            CANCEL
-          </Button>,
+          <Link to="/register">
+            <Button>REGISTER</Button>
+          </Link>,
           <Button
             key="submit"
             onClick={this.handleSubmit}
@@ -79,6 +81,7 @@ class LoginModal extends Component {
         >
           <FacebookLogin
             appId="762323184101430"
+            size="small"
             autoLoad={true}
             fields="name,email,picture"
             onClick={this.componentClicked}

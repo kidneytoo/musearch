@@ -5,7 +5,8 @@ import 'antd/dist/antd.css';
 import Header from './components/blocks/Header';
 import { connect } from 'react-redux';
 import * as actions from './actions';
-
+import register from './components/pages/register';
+import { Switch, Route, Redirect } from 'react-router-dom';
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
@@ -26,6 +27,8 @@ class App extends Component {
             height: '100vh'
           }}
         />
+        <Route path="/register" component={register} />
+        <Route exact path="/" render={() => <Redirect to="/" />} />
       </div>
     );
   }
