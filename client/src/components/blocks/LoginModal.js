@@ -68,24 +68,7 @@ class LoginModal extends Component {
           </Button>
         ]}
       >
-        <div
-          className="fb-login-button"
-          data-max-rows="1"
-          data-size="large"
-          data-button-type="login_with"
-          data-show-faces="false"
-          data-auto-logout-link="false"
-          data-use-continue-as="false"
-        >
-          <FacebookLogin
-            appId="762323184101430"
-            autoLoad={true}
-            fields="name,email,picture"
-            onClick={this.componentClicked}
-            callback={this.responseFacebook}
-            icon="fa-facebook"
-          />
-        </div>
+        <a href="/auth/facebook">Login Facebook</a>
         <Divider> OR </Divider>
         <Form layout="vertical" onSubmit={this.handleSubmit}>
           <FormItem

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Button } from 'antd';
 import LoginModal from './LoginModal';
 import Logo from '../../styles/img/logo.svg';
+import { NavLink } from 'react-router-dom';
 
 // import { Link } from 'react-router-dom';
 class Header extends Component {
@@ -43,9 +44,13 @@ class Header extends Component {
               <img src={Logo} />
             </a>
             <div className="right">
-              <Button type="primary" onClick={this.showModal}>
-                SIGN IN
-              </Button>
+              {!this.props.auth ? (
+                <Button type="primary" onClick={this.showModal}>
+                  SIGN IN
+                </Button>
+              ) : (
+                <a href="api/logout">Logout</a>
+              )}
             </div>
           </div>
         </nav>

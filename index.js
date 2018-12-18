@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const CookieSession = require('cookie-session');
 const keys = require('./config/keys');
 
-require('./models/User');
+require('./models/FacebookUser');
 require('./services/passport');
 
 mongoose.connect(keys.mongoURI);
