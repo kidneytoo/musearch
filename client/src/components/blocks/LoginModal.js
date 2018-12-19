@@ -52,6 +52,7 @@ class LoginModal extends Component {
     return (
       <Modal
         title="SIGN IN"
+        // visible={this.props.loginModalVisible}
         visible={this.props.loginModalVisible}
         onOk={this.props.handleOk}
         onCancel={this.props.handleCancel}
@@ -82,7 +83,7 @@ class LoginModal extends Component {
           <FacebookLogin
             appId="762323184101430"
             size="small"
-            autoLoad={true}
+            autoLoad={false}
             fields="name,email,picture"
             onClick={this.componentClicked}
             callback={this.responseFacebook}
@@ -96,15 +97,13 @@ class LoginModal extends Component {
             help={userNameError || ''}
           >
             {getFieldDecorator('userName', {
-              rules: [
-                { required: true, message: 'Please input your username!' }
-              ]
+              rules: [{ required: true, message: 'Please input your E-mail!' }]
             })(
               <Input
                 prefix={
                   <Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />
                 }
-                placeholder="Username"
+                placeholder="E-mail"
               />
             )}
           </FormItem>

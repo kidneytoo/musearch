@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'antd';
 import LoginModal from './LoginModal';
+import bg from '../../dist/bg/1.jpg';
+import * as actions from '../../actions';
+import { compose, lifecycle } from 'recompose';
 
-// import { Link } from 'react-router-dom';
 class Header extends Component {
   state = {
     loginModalVisible: false
@@ -30,7 +32,16 @@ class Header extends Component {
 
   render() {
     return (
-      <div>
+      <div
+        className="App"
+        style={{
+          backgroundImage: `url(${bg})`,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center center',
+          height: '100vh'
+        }}
+      >
         <LoginModal
           loginModalVisible={this.state.loginModalVisible}
           handleOk={this.handleOk.bind(this)}
@@ -46,6 +57,7 @@ class Header extends Component {
             </div>
           </div>
         </nav>
+        <div />
       </div>
     );
   }
@@ -54,4 +66,17 @@ class Header extends Component {
 function mapStateToProps({ auth }) {
   return { auth };
 }
-export default connect(mapStateToProps)(Header);
+
+const enhance = compose(
+  connect(
+    mapStateToProps,
+    actions
+  ),
+
+  lifecycle({
+    componentDidMount() {
+      this.props.fetchUser();
+    }
+  })
+);
+export default enhance(Header);
