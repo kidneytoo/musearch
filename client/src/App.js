@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './styles/App.scss';
-import bg from './dist/bg/1.jpg';
 import 'antd/dist/antd.css';
 import Header from './components/blocks/Header';
 import { connect } from 'react-redux';
 import * as actions from './actions';
 import RegistrationForm from './components/blocks/RegistrationForm';
+import SearchPage from './components/blocks/SearchPage';
 import { Switch, Route, Redirect } from 'react-router-dom';
 class App extends Component {
   componentDidMount() {
@@ -20,7 +20,7 @@ class App extends Component {
         </div>
         <Switch>
           <Route path="/register" render={() => <RegistrationForm />} />
-          {/* <Route exact path="/" render={() => <Redirect to="/" />} /> */}
+          <Route path="/search" render={() => <SearchPage />} />
         </Switch>
       </div>
     );

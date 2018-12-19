@@ -30,8 +30,10 @@
     "nodemon": "^1.18.7",
     "passport": "^0.4.0",
     "passport-facebook": "^2.1.1",
+    "passport-local": "^1.0.0",
     "react-facebook-login": "^4.1.1",
     "react-router-dom": "^4.3.1",
+    "recompose": "0.27.0",
     "redux-promise": "^0.6.0"
   }
 }

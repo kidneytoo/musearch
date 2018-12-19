@@ -1,117 +1,98 @@
 import React, { Component } from 'react';
-import FacebookLogin from 'react-facebook-login';
-import ReactDOM from 'react-dom';
 import { Form, Icon, Input, Button, Checkbox, Modal, Divider } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import axios from 'axios';
+import * as actions from '../../actions';
+import { connect } from 'react-redux';
 
 const FormItem = Form.Item;
-function hasErrors(fieldsError) {
-  return Object.keys(fieldsError).some(field => fieldsError[field]);
-}
+
 class LoginModal extends Component {
   state = {
     isLoggedIn: false,
-    userID: '',
-    name: '',
-    email: '',
-    picture: ''
+    tel: '',
+    password: '',
+    failed: false,
+    success: false
   };
-  componentDidMount() {
-    // To disabled submit button at the beginning.
-    this.props.form.validateFields();
-  }
-  responseFacebook = response =>
+
+  login = (tel, password) => {
+    return axios
+      .post('http://localhost:5000/api/login', { tel, password })
+      .then(res => {
+        this.props.fetchUserLogin(res.data);
+      })
+      .then(res => {
+        this.setState({
+          success: true
+        });
+      })
+      .catch(e => {
+        this.setState({
+          failed: true
+        });
+      });
+  };
+
+  telChange = e => {
     this.setState({
-      isLoggedIn: true,
-      userID: response.userID,
-      name: response.name,
-      email: response.email,
-      picture: response.picture.data.url
+      tel: e.target.value
     });
-  componentClicked = () => console.log('Clicked');
+  };
+
+  passwordChange = e => {
+    this.setState({
+      password: e.target.value
+    });
+  };
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
-      }
-    });
+    this.login(this.state.tel, this.state.password);
   };
   render() {
-    const {
-      getFieldDecorator,
-      getFieldsError,
-      getFieldError,
-      isFieldTouched
-    } = this.props.form;
-    const userNameError =
-      isFieldTouched('userName') && getFieldError('userName');
-    const passwordError =
-      isFieldTouched('password') && getFieldError('password');
+    if (this.state.success) return <Redirect to="/" />;
     return (
       <Modal
         title="SIGN IN"
+        // visible={this.props.loginModalVisible}
         visible={this.props.loginModalVisible}
         onOk={this.props.handleOk}
         onCancel={this.props.handleCancel}
-        footer={[
-          <Link to="/register">
-            <Button>REGISTER</Button>
-          </Link>,
-          <Button
-            key="submit"
-            onClick={this.handleSubmit}
-            type="primary"
-            htmlType="submit"
-            disabled={hasErrors(getFieldsError())}
-          >
-            SIGN IN
-          </Button>
-        ]}
       >
         <a href="/auth/facebook">Login Facebook</a>
         <Divider> OR </Divider>
         <Form layout="vertical" onSubmit={this.handleSubmit}>
-          <FormItem
-            validateStatus={userNameError ? 'error' : ''}
-            help={userNameError || ''}
-          >
-            {getFieldDecorator('userName', {
-              rules: [
-                { required: true, message: 'Please input your username!' }
-              ]
-            })(
-              <Input
-                prefix={
-                  <Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />
-                }
-                placeholder="Username"
-              />
-            )}
+          <FormItem>
+            <Input
+              prefix={
+                <Icon type="phone" style={{ color: 'rgba(0,0,0,.25)' }} />
+              }
+              placeholder="Telephone"
+              value={this.state.tel}
+              onChange={this.telChange}
+            />
           </FormItem>
-          <FormItem
-            validateStatus={passwordError ? 'error' : ''}
-            help={passwordError || ''}
-          >
-            {getFieldDecorator('password', {
-              rules: [
-                { required: true, message: 'Please input your Password!' }
-              ]
-            })(
-              <Input
-                prefix={
-                  <Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />
-                }
-                type="password"
-                placeholder="Password"
-              />
-            )}
+          <FormItem>
+            <Input
+              prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              type="password"
+              placeholder="Password"
+              value={this.state.password}
+              onChange={this.passwordChange}
+            />
+          </FormItem>
+          <FormItem>
+            <Button htmlType="submit">Sign in</Button>
           </FormItem>
         </Form>
+        {this.state.failed ? <p>Failed</p> : null}
       </Modal>
     );
   }
 }
 
-export default Form.create()(LoginModal);
+export default connect(
+  null,
+  actions
+)(LoginModal);

@@ -9,3 +9,11 @@ export const fetchUser = () => async dispatch => {
     payload: res.data
   });
 };
+
+export const fetchUserLogin = data => async dispatch => {
+  console.log(data);
+  dispatch({
+    type: FETCH_USER,
+    payload: data
+  });
+};

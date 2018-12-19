@@ -5,7 +5,8 @@ const ObjectID = Schema.ObjectId;
 const artistSchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   genre: {
     type: ObjectID,
@@ -40,6 +41,10 @@ const artistSchema = new Schema({
     }
   ],
   owner: {
+    type: ObjectID,
+    ref: 'ArtistManager'
+  },
+  userFollow: {
     type: ObjectID,
     ref: 'FacebookUsers'
   },

@@ -30,7 +30,8 @@ passport.use(
           userId: profile.id,
           email: profile._json.email,
           firstname: profile._json.first_name,
-          lastname: profile._json.last_name
+          lastname: profile._json.last_name,
+          followArtists: []
         }).save();
         done(null, user);
       }

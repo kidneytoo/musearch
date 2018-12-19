@@ -7,6 +7,11 @@ const CookieSession = require('cookie-session');
 const keys = require('./config/keys');
 
 require('./models/FacebookUser');
+require('./models/ArtistManager');
+require('./models/Artist');
+require('./models/Genre');
+require('./models/Post');
+
 require('./services/passport');
 
 mongoose.connect(keys.mongoURI);
@@ -27,6 +32,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require('./routes/facebookAuthRoutes')(app);
+
+require('./routes/artistManagerRoutes')(app);
+require('./routes/artistRoutes')(app);
+require('./routes/postRoutes')(app);
 
 if (process.env.NODE_ENV == 'production') {
   app.use(express.static('client/build'));
