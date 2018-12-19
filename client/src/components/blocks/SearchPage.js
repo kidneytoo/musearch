@@ -16,15 +16,19 @@ class SearchPage extends Component {
   }
 
   handleSearch = value => {
-    var video_id = value.split('v=')[1];
-    var ampersandPosition = video_id.indexOf('&');
-    if (ampersandPosition != -1) {
-      video_id = video_id.substring(0, ampersandPosition);
+    try {
+      var video_id = value.split('v=')[1];
+      var ampersandPosition = video_id.indexOf('&');
+      if (ampersandPosition != -1) {
+        video_id = video_id.substring(0, ampersandPosition);
+      }
+      this.setState({
+        isSearch: true,
+        urls: [...this.state.urls, video_id]
+      });
+    } catch (e) {
+      console.log('Error');
     }
-    this.setState({
-      isSearch: true,
-      urls: [...this.state.urls, video_id]
-    });
   };
 
   getVideoContent = () => {
