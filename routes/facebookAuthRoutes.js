@@ -24,4 +24,8 @@ module.exports = app => {
     //res.send(req.user);
     res.redirect('/');
   });
+
+  app.get('/register', (req, res) => {
+    console.log('register');
+  });
 };

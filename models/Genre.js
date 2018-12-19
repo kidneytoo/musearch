@@ -2,22 +2,13 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const ObjectID = Schema.ObjectId;
 
-const userSchema = new Schema({
-  userId: {
+const genreSchema = new Schema({
+  name: {
     type: String,
     required: true,
     unique: true
   },
-  email: {
-    type: String,
-    required: true
-  },
-  firstname: {
-    type: String
-  },
-  lastname: {
-    type: String
-  },
+
   artist: [
     {
       type: ObjectID,
@@ -26,4 +17,4 @@ const userSchema = new Schema({
   ]
 });
 
-mongoose.model('FacebookUsers', userSchema);
+mongoose.model('Genre', genreSchema);
