@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Button } from 'antd';
+import { Button, Input } from 'antd';
 
 class ArtistRegisterPage extends Component {
   state = {
@@ -114,10 +114,15 @@ class ArtistRegisterPage extends Component {
   render() {
     if (this.state.isAdd) return <Redirect to="/amProfile" />;
     return (
-      <div>
+      <div className="artist-register-container">
         <h3>Add Artist</h3>
         <form onSubmit={this.handleSubmit}>
-          <input value={this.state.name} onChange={this.nameChange} />
+          <Input
+            placeholder="Name"
+            value={this.state.name}
+            onChange={this.nameChange}
+          />
+          <h4>Members</h4>
           <table>
             <thead>
               <tr>
@@ -132,19 +137,19 @@ class ArtistRegisterPage extends Component {
                 return (
                   <tr>
                     <td>
-                      <input
+                      <Input
                         onChange={this.handleMemberNameChange(idx)}
                         value={data.name}
                       />
                     </td>
                     <td>
-                      <input
+                      <Input
                         onChange={this.handleMemberNickNameChange(idx)}
                         value={data.nickname}
                       />
                     </td>
                     <td>
-                      <input
+                      <Input
                         onChange={this.handleMemberPlayChange(idx)}
                         value={data.play}
                       />
@@ -160,14 +165,16 @@ class ArtistRegisterPage extends Component {
             </tbody>
           </table>
           <Button onClick={() => this.handleAddMember()}>Add Member</Button>
-          <input
+          <Input
             value={this.state.description}
             onChange={this.descriptionChange}
+            placeholder="Description"
           />
+          <h4>Youtube Link</h4>
           {this.state.youtubeLink.map((data, idx) => {
             return (
               <div key={idx}>
-                <input
+                <Input
                   value={this.state.youtubeLink}
                   onChange={this.handleYoutubeLinkChange(idx)}
                 />
@@ -180,8 +187,12 @@ class ArtistRegisterPage extends Component {
           <Button onClick={() => this.handleAddYoutubeLink()}>
             Add Youtube Link
           </Button>
-          <input value={this.state.url} onChange={this.urlChange} />
-          <button type="submit">Submit</button>
+          <Input
+            placeholder="url"
+            value={this.state.url}
+            onChange={this.urlChange}
+          />
+          <Button htmlType="submit">Submit</Button>
         </form>
       </div>
     );

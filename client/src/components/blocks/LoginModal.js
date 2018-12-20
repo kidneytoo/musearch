@@ -58,9 +58,12 @@ class LoginModal extends Component {
         onOk={this.props.handleOk}
         onCancel={this.props.handleCancel}
         footer={null}
+        className="login-modal"
       >
         <h3>Login as User</h3>
-        <a href="/auth/facebook">Login Facebook</a>
+        <a href="/auth/facebook" className="facebook-button">
+          Connect with Facebook
+        </a>
         <Divider> OR </Divider>
         <h3>Login as Artist Manager</h3>
         <Form layout="vertical" onSubmit={this.handleSubmit}>
@@ -84,7 +87,9 @@ class LoginModal extends Component {
             />
           </FormItem>
           <FormItem>
-            <Button htmlType="submit">Sign in</Button>
+            <Button className="sign-in-button" htmlType="submit">
+              Sign in
+            </Button>
           </FormItem>
         </Form>
         {this.state.failed ? <p>Failed</p> : null}

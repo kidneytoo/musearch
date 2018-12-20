@@ -80,7 +80,9 @@ class Header extends Component {
                   </div>
                 </Dropdown>
               ) : (
-                <a href="api/logout">Logout</a>
+                <a className="logout" href="api/logout">
+                  LOGOUT
+                </a>
               )}
             </div>
           </div>

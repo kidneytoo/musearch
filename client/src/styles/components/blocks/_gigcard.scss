@@ -1,5 +1,10 @@
 .gig-card-link {
   width: 100%;
+  color: $living-coral;
+
+  &:hover {
+    color: $living-coral;
+  }
   > .gig-card-container {
     margin: 20px 30px;
     padding: 10px;

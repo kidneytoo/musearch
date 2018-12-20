@@ -1,0 +1,65 @@
+.login-modal {
+  .ant-modal-body {
+    display: flex;
+    flex-flow: column;
+  }
+  h3 {
+    font-family: 'poppins-bold';
+  }
+
+  .facebook-button {
+    background-color: #3b5998;
+    color: white;
+    padding: 10px 15px;
+    font-family: 'poppins';
+    border-radius: 10px;
+    align-self: center;
+    transition: 0.2s;
+
+    &:hover {
+      background-color: #8b9dc3;
+      transition: 0.2s;
+      color: white;
+    }
+  }
+
+  .ant-input-affix-wrapper {
+    &:hover {
+      border-color: $living-coral;
+    }
+
+    &:focus {
+      border-color: $living-coral;
+    }
+  }
+  input {
+    &:hover {
+      border-color: $living-coral !important;
+    }
+
+    &:focus {
+      border-color: $living-coral !important;
+      box-shadow: none;
+    }
+  }
+
+  a {
+    color: $living-coral;
+
+    &:hover {
+      color: $seapink;
+    }
+  }
+
+  .sign-in-button {
+    background-color: $living-coral;
+    color: white;
+    border-color: $living-coral;
+    border-radius: 10px;
+    &:hover {
+      color: $living-coral;
+      background: none;
+      border-color: $living-coral;
+    }
+  }
+}

@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import { Button, Modal, DatePicker, Input, InputNumber } from 'antd';
+import moment from 'moment';
 
 class PostRegisterModal extends Component {
   state = {
     topic: '',
     description: '',
     date: null,
+    dateStr: null,
     cost: Number(0),
     method: '',
     link: '',
@@ -28,7 +30,8 @@ class PostRegisterModal extends Component {
 
   dateChange = (date, dateString) => {
     this.setState({
-      date: date
+      date: date,
+      dateStr: dateString
     });
   };
 
@@ -55,7 +58,7 @@ class PostRegisterModal extends Component {
       artistID: this.props.id,
       topic: this.state.topic,
       description: this.state.description,
-      date: null,
+      date: new Date(this.state.dateStr),
       cost: [this.state.cost],
       method: this.state.method,
       link: this.state.link
@@ -75,18 +78,38 @@ class PostRegisterModal extends Component {
         onCancel={this.props.onCancel}
         footer={null}
       >
-        <div>
+        <div className="post-register-modal">
+          <h3>Add Gigs</h3>
           <form onSubmit={() => this.handleSubmit()}>
-            <Input value={this.state.topic} onChange={this.topicChange} />
+            <Input
+              placeholder="Name"
+              value={this.state.topic}
+              onChange={this.topicChange}
+            />
             <Input
               value={this.state.description}
               onChange={this.descriptionChange}
+              placeholder="Description"
             />
             <DatePicker onChange={this.dateChange} value={this.state.date} />
-            <InputNumber value={this.state.cost} onChange={this.costChange} />
-            <Input value={this.state.method} onChange={this.methodChange} />
-            <Input value={this.state.link} onChange={this.linkChange} />
-            <Button htmlType="submit">Add Gigs</Button>
+            <InputNumber
+              placeholder="Cost"
+              value={this.state.cost}
+              onChange={this.costChange}
+            />
+            <Input
+              placeholder="Ticket Seller"
+              value={this.state.method}
+              onChange={this.methodChange}
+            />
+            <Input
+              placeholder="Link"
+              value={this.state.link}
+              onChange={this.linkChange}
+            />
+            <Button className="submit-button" htmlType="submit">
+              Add Gigs
+            </Button>
           </form>
         </div>
       </Modal>

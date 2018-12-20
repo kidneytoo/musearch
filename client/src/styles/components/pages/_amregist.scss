@@ -1,0 +1,49 @@
+.am-register-container {
+  width: 50vw;
+  margin: 20px auto;
+  > form {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+  .ant-input-affix-wrapper {
+    margin: 10px 0;
+    &:hover {
+      border-color: $living-coral;
+    }
+
+    &:focus {
+      border-color: $living-coral;
+    }
+  }
+  input {
+    &:hover {
+      border-color: $living-coral !important;
+    }
+
+    &:focus {
+      border-color: $living-coral !important;
+      box-shadow: none;
+    }
+  }
+
+  a {
+    color: $living-coral;
+
+    &:hover {
+      color: $seapink;
+    }
+  }
+
+  .submit-button {
+    background-color: $living-coral;
+    color: white;
+    border-color: $living-coral;
+    border-radius: 10px;
+    &:hover {
+      color: $living-coral;
+      background: none;
+      border-color: $living-coral;
+    }
+  }
+}

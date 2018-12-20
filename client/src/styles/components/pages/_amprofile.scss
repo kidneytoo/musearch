@@ -1,0 +1,31 @@
+.am-profile-page {
+  width: 100vw;
+  background-color: $grey-bg;
+  min-height: calc(100vh - 40px);
+  padding-bottom: 20px;
+  display: flex;
+  flex-flow: column;
+  > h3 {
+    font-size: 32px;
+    font-family: 'poppins-bold';
+    margin-left: 30px;
+    padding-top: 20px;
+  }
+
+  .add-artist {
+    border: 1px solid $living-coral;
+    padding: 10px 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    align-self: center;
+    background-color: $living-coral;
+    color: white;
+    transition: 0.3s;
+    &:hover {
+      color: $living-coral;
+      background: none;
+      border-color: $living-coral;
+      transition: 0.3s;
+    }
+  }
+}

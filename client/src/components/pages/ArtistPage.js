@@ -19,7 +19,6 @@ class ArtistPage extends Component {
   };
 
   handleCancel = e => {
-    console.log(e);
     this.setState({
       registerVisible: false
     });
@@ -81,6 +80,7 @@ class ArtistPage extends Component {
             })}
           </div>
         </div>
+        <h3> Gigs</h3>
         <div className="gigs-container" />
         {this.state.artistInfo.work.map((data, idx) => {
           return <GigCard key={idx} data={data} />;

@@ -81,4 +81,32 @@
       }
     }
   }
+
+  .user-icon {
+    cursor: pointer;
+    border: 1px solid $grey-bg;
+    border-radius: 100%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+
+    &:hover {
+      border-color: $living-coral;
+      background-color: $living-coral;
+      color: white;
+      transition: 0.3s;
+    }
+  }
+
+  .logout {
+    font-family: 'poppins-black';
+    color: black;
+
+    &:hover {
+      color: $living-coral;
+    }
+  }
 }

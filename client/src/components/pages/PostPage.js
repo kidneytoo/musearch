@@ -26,7 +26,7 @@ class PostPage extends Component {
         <h3>{this.state.postInfo.topic}</h3>
         <p>By {this.state.postInfo.artist[0].name}</p>
         <p>{this.state.postInfo.description}</p>
-        <p>{moment(this.state.postInfo.date).format('DD/MM/YYYY')}</p>
+        <p>{moment(this.state.postInfo.date[0]).format('DD/MM/YYYY')}</p>
         <div className="ticket-container">
           <p>
             {this.state.postInfo.tickets.cost.map(data => {
