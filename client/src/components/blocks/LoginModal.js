@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Icon, Input, Button, Checkbox, Modal, Divider } from 'antd';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, NavLink } from 'react-router-dom';
 import axios from 'axios';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
@@ -54,14 +54,15 @@ class LoginModal extends Component {
     if (this.state.success) return <Redirect to="/" />;
     return (
       <Modal
-        title="SIGN IN"
-        // visible={this.props.loginModalVisible}
         visible={this.props.loginModalVisible}
         onOk={this.props.handleOk}
         onCancel={this.props.handleCancel}
+        footer={null}
       >
+        <h3>Login as User</h3>
         <a href="/auth/facebook">Login Facebook</a>
         <Divider> OR </Divider>
+        <h3>Login as Artist Manager</h3>
         <Form layout="vertical" onSubmit={this.handleSubmit}>
           <FormItem>
             <Input
@@ -87,6 +88,12 @@ class LoginModal extends Component {
           </FormItem>
         </Form>
         {this.state.failed ? <p>Failed</p> : null}
+        <p>
+          Not have an account?{' '}
+          <NavLink to="/register" onClick={this.props.handleCancel}>
+            Register
+          </NavLink>
+        </p>
       </Modal>
     );
   }

@@ -4,30 +4,39 @@ import 'antd/dist/antd.css';
 import Header from './components/blocks/Header';
 import { connect } from 'react-redux';
 import * as actions from './actions';
-import RegistrationForm from './components/blocks/RegistrationForm';
-import SearchPage from './components/blocks/SearchPage';
+import AMRegisterPage from './components/pages/AMRegisterPage';
+import AllArtistPage from './components/pages/AllArtistPage';
+import ArtistPage from './components/pages/ArtistPage';
+import PostPage from './components/pages/PostPage';
+import AllPostPage from './components/pages/AllPostPage';
+import AMProfilePage from './components/pages/AMProfilePage';
+import ArtistRegisterPage from './components/pages/ArtistRegisterPage';
 import { Switch, Route, Redirect } from 'react-router-dom';
 class App extends Component {
-  componentDidMount() {
-    this.props.fetchUser();
-  }
-
   render() {
     return (
       <div>
         <div className="App">
           <Header />
+          <Switch>
+            <Route path="/register" render={() => <AMRegisterPage />} />
+            <Route
+              path="/artist/:url"
+              render={props => <ArtistPage {...props} />}
+            />
+            <Route path="/artist" render={() => <AllArtistPage />} />
+            <Route path="/amProfile" render={() => <AMProfilePage />} />
+            <Route path="/post/:id" render={props => <PostPage {...props} />} />
+            <Route
+              path="/artistRegister"
+              render={() => <ArtistRegisterPage />}
+            />
+            <Route exact path="/" render={() => <AllPostPage />} />
+          </Switch>
         </div>
-        <Switch>
-          <Route path="/register" render={() => <RegistrationForm />} />
-          <Route path="/search" render={() => <SearchPage />} />
-        </Switch>
       </div>
     );
   }
 }
 
-export default connect(
-  null,
-  actions
-)(App);
+export default App;

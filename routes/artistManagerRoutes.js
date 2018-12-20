@@ -36,6 +36,9 @@ module.exports = app => {
 
       let artistManager = await ArtistManager.findOne({
         tel
+      }).populate({
+        path: 'artist',
+        model: 'Artist'
       });
 
       if (!artistManager) {
