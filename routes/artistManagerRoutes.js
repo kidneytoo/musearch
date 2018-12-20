@@ -4,14 +4,13 @@ const toJson = require('../helpers/toJson');
 const ArtistManager = mongoose.model('ArtistManager');
 
 module.exports = app => {
-  app.post(
-    '/api/register',
-
-    async (req, res) => {
+  console.log('HERE');
+  app.post('/api/register', async (req, res) => {
+    console.log('req', req.body);
+    try {
       let artistManager = await ArtistManager.findOne({
         tel: req.body.tel
       });
-
       if (artistManager) {
         return res.status(403).send('Manager Existed');
       }
@@ -22,10 +21,13 @@ module.exports = app => {
       });
 
       await newArtistManager.save();
+      console.log('SAVE');
 
       res.status(200).send('Register Success');
+    } catch (error) {
+      console.log(error);
     }
-  );
+  });
 
   app.post(
     '/api/login',

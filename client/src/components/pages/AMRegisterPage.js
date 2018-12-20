@@ -22,15 +22,16 @@ class AMRegisterPage extends Component {
     });
   };
   handleSubmit = () => {
-    let result = axios.post(`http://localhost:5000/api/register/`, {
-      tel: this.state.tel,
-      password: this.state.password
-    });
-    result.then(res => {
-      this.setState({
-        isRegist: true
+    return axios
+      .post(`http://localhost:3000/api/register/`, {
+        tel: this.state.tel,
+        password: this.state.password
+      })
+      .then(res => {
+        this.setState({
+          isRegist: true
+        });
       });
-    });
   };
 
   render() {
